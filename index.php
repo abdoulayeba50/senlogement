@@ -1,8 +1,12 @@
 <?php
 session_start();
+require_once __DIR__ . '/includes/db.php'; // ← AJOUT
+$pdo = getDB(); // ← AJOUT
+
 $user_nom  = $_SESSION['user_nom']  ?? null;
 $user_role = $_SESSION['user_role'] ?? null;
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -518,7 +522,7 @@ $user_role = $_SESSION['user_role'] ?? null;
     </p>
     <?php if ($user_nom): ?>
       <div class="hero-welcome">
-        <h3>Bon retour, <?= htmlspecialchars($user_nom) ?> 👋</h3>
+        <h3>Bon retour, <?= htmlspecialchars($user_nom) ?> <i class="fa-solid fa-hand"></i></h3>
         <p>Trouvez votre prochain logement ci-dessous.</p>
         <a href="profil.php" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.5)">
           <i class="fa-solid fa-arrow-right"></i> Mon espace
@@ -832,9 +836,9 @@ $user_role = $_SESSION['user_role'] ?? null;
       <a href="#"><i class="fa-solid fa-circle-question"></i> FAQ</a>
       <a href="#"><i class="fa-solid fa-headset"></i> Assistance</a>
       <a href="#"><i class="fa-solid fa-file-contract"></i> Conditions</a>
-      <a href="#"><i class="fa-solid fa-plus"></i> Ajouter un logement</a>
+      <a href="ajouter-logement.php"><i class="fa-solid fa-plus"></i> Ajouter un logement</a>
     </div>
-    <div class="footer-copy">© 2024 Sen Location · Tous droits réservés</div>
+    <div class="footer-copy">© 2026 Sen Location · Tous droits réservés</div>
   </div>
 </footer>
 
@@ -878,7 +882,7 @@ $user_role = $_SESSION['user_role'] ?? null;
       <form id="registerForm">
         <div class="form-group">
           <label><i class="fa-solid fa-user"></i> Prénom et Nom *</label>
-          <input type="text" name="nom" placeholder="ex : Moussa Diallo" required>
+          <input type="text" name="nom" placeholder="ex : Abdoulaye BA" required>
         </div>
         <div class="form-group">
           <label><i class="fa-solid fa-envelope"></i> E-mail *</label>
